@@ -97,7 +97,7 @@ const Menu = (props) => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-              <ListItem className={classes.menuCloseIcon}>
+              {/* <ListItem className={classes.menuCloseIcon}>
                   {
                       drawerOpen 
                         ? 
@@ -105,7 +105,7 @@ const Menu = (props) => {
                         :
                             <IconButton onClick={openHandler}><ChevronRightIcon /></IconButton>
                   }
-              </ListItem>
+              </ListItem> */}
               {/* <Link to="/configuration-process" className={classes.linkText} >
                 <ListItem button onClick={menuItemClickHandler}>
                   <ListItemIcon className={classes.listIcon}><InboxIcon /></ListItemIcon>
