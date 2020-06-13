@@ -35,7 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const [drawerOpen, setDrawerState] = React.useState(true);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const [drawerOpen, setDrawerState] = React.useState(false);
 
   const openDrawer = () => {
     setDrawerState(true);
@@ -44,9 +48,6 @@ function App() {
   const closeDrawer = () => {
     setDrawerState(false);
   }
-
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
   const menuItemClicked = () => {
     setDrawerState(!isSmallScreen)

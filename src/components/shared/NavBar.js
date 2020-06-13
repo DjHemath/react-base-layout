@@ -40,7 +40,7 @@ const NavBar = (props) => {
     return (
         <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Hidden smUp>
+          <Hidden mdUp>
             <IconButton className={classes.menuIcon} onClick={openHandler}>
               <MenuIcon />
             </IconButton>

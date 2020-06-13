@@ -29,10 +29,13 @@ const MenuItems = ({menuItems, classes, menuItemClickHandler}) => {
 
 const Menu = (props) => {
     const {drawerWidth, drawerOpen, closeHandler, openHandler, menuItemClickHandler} = props;
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles((theme) => {
+      return {
         drawer: {
-            width: drawerOpen ? drawerWidth : theme.spacing(7) + 1,
+          width: drawerOpen ? isSmallScreen ? 0 : drawerWidth : isSmallScreen ? 0 : drawerWidth,
             flexShrink: 0,
             overflowX: 'hidden',
             whiteSpace: 'nowrap',
@@ -45,8 +48,9 @@ const Menu = (props) => {
             },
         },
         drawerPaper: {
-            width: drawerOpen ? drawerWidth :  theme.spacing(7) + 1,
+            width: drawerOpen ? drawerWidth :  isSmallScreen ?  0 : drawerWidth,
             overflowX: 'hidden',
+            whiteSpace: 'nowrap',
             transition: theme.transitions.create(['margin', 'width'], {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.leavingScreen,
@@ -70,7 +74,7 @@ const Menu = (props) => {
         listIcon: {
           minWidth: '40px'
         }
-    }));
+    }});
     const classes = useStyles();
 
     const menuItems = [
