@@ -48,9 +48,11 @@ const NavBar = (props) => {
           <Typography variant="h6" noWrap>
             Hospital Name
           </Typography>
-          <Typography variant="h6" noWrap>
-            Logo
-          </Typography>
+          <Hidden smDown>
+            <Typography variant="h6" noWrap>
+              Logo
+            </Typography>
+          </Hidden>
           <div>
               <IconButton
                 aria-label="account of current user"
