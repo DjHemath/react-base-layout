@@ -28,7 +28,7 @@ const MenuItems = ({menuItems, classes, menuItemClickHandler}) => {
 }
 
 const Menu = (props) => {
-    const {drawerWidth, drawerOpen, closeHandler, openHandler, menuItemClickHandler} = props;
+    const {drawerWidth, drawerOpen, menuItemClickHandler} = props;
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 

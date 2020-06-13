@@ -27,7 +27,7 @@ const NavBar = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const classes = useStyles();
-    const {openHandler} = props
+    const {drawerHanlder} = props
 
     const handleMenu = (event) => {
       setAnchorEl(event.currentTarget);
@@ -41,7 +41,7 @@ const NavBar = (props) => {
         <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Hidden mdUp>
-            <IconButton className={classes.menuIcon} onClick={openHandler}>
+            <IconButton className={classes.menuIcon} onClick={drawerHanlder}>
               <MenuIcon />
             </IconButton>
           </Hidden>

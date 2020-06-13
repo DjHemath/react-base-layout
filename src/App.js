@@ -41,23 +41,19 @@ function App() {
 
   const [drawerOpen, setDrawerState] = React.useState(false);
 
-  const openDrawer = () => {
-    setDrawerState(true);
-  }
-
-  const closeDrawer = () => {
-    setDrawerState(false);
-  }
-
   const menuItemClicked = () => {
     setDrawerState(!isSmallScreen)
+  }
+
+  const toggleDrawer = () => {
+    setDrawerState(!drawerOpen)
   }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <NavBar openHandler={openDrawer}/>
-      <Menu drawerWidth={drawerWidth} drawerOpen={drawerOpen} openHandler={openDrawer} closeHandler={closeDrawer} menuItemClickHandler={menuItemClicked}/>
+      <NavBar drawerHanlder={toggleDrawer}/>
+      <Menu drawerWidth={drawerWidth} drawerOpen={drawerOpen} menuItemClickHandler={menuItemClicked}/>
       <Main />
     </div>
   );
