@@ -35,7 +35,8 @@ const Menu = (props) => {
     const useStyles = makeStyles((theme) => {
       return {
         drawer: {
-          width: drawerOpen ? isSmallScreen ? 0 : drawerWidth : isSmallScreen ? 0 : drawerWidth,
+          // width: drawerOpen ? isSmallScreen ? 0 : drawerWidth : isSmallScreen ? 0 : drawerWidth,
+          width: drawerOpen ? drawerWidth : 0,
             flexShrink: 0,
             overflowX: 'hidden',
             whiteSpace: 'nowrap',
@@ -43,7 +44,7 @@ const Menu = (props) => {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.leavingScreen,
             }),
-            [theme.breakpoints.down('xs')]: {
+            [theme.breakpoints.down('sm')]: {
               width: 0,
             },
         },
