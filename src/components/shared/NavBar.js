@@ -9,6 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Hidden } from '@material-ui/core';
+import '../css/navBar.css'
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -40,14 +41,18 @@ const NavBar = (props) => {
     return (
         <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-        <Hidden smUp>
+
+          <div className="toobar-logo">
+        {/* <Hidden smUp> */}
           <IconButton className={classes.menuIcon} onClick={drawerHanlder}>
             <MenuIcon />
           </IconButton>
-          </Hidden>
-          <Typography variant="h6" noWrap>
+          {/* </Hidden> */}
+
+          <Typography variant="h6" noWrap className="tool-title">
             Hospital Name
           </Typography>
+          </div>
           <Hidden smDown>
             <Typography variant="h6" noWrap>
               Logo

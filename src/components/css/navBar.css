@@ -1,0 +1,12 @@
+.toobar-logo{
+    display: flex;  
+    justify-content: space-between;
+}
+.tool-title{
+    padding-top: 8px;
+}
+
+.MuiAppBar-colorPrimary {
+    color: #fff;
+    background-color: rgb(58,175,158) !important;
+}

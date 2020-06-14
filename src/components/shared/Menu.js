@@ -6,15 +6,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import AccessibilityIcon from '@material-ui/icons/Accessibility';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@material-ui/core';
+
 
 const MenuItems = ({menuItems, classes, menuItemClickHandler}) => {
   return menuItems.map(menuItem => (
@@ -75,7 +72,7 @@ const Menu = (props) => {
         activeLink: {
           // backgroundColor: 'red',
           "& .menuLink" : {
-            backgroundColor: '#f4f4f4'
+            backgroundColor: '#dcf4f1'
           }
         },
         listIcon: {
@@ -93,7 +90,7 @@ const Menu = (props) => {
       {
         text: "Manage User",
         url: "/manage-user",
-        icon: <MailIcon />
+        icon: <AccessibilityIcon />
       }
     ];
 

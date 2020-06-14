@@ -5,12 +5,13 @@ import { Switch, Route } from 'react-router-dom';
 import ConfigurationProcess from './main-components/ConfigurationProcess';
 import ManageUser from './main-components/ManageUser';
 
+
 const Main = () => {
     const useStyles = makeStyles(theme => ({
         content: {
             flexGrow: 1,
             padding: theme.spacing(3),
-            backgroundColor: '#f4f4f4',
+            backgroundColor: 'rgb(220,244,241)',
             height: '100vh'
           },
     }));
