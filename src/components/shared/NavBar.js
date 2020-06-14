@@ -40,10 +40,10 @@ const NavBar = (props) => {
     return (
         <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Hidden mdUp>
-            <IconButton className={classes.menuIcon} onClick={drawerHanlder}>
-              <MenuIcon />
-            </IconButton>
+        <Hidden smUp>
+          <IconButton className={classes.menuIcon} onClick={drawerHanlder}>
+            <MenuIcon />
+          </IconButton>
           </Hidden>
           <Typography variant="h6" noWrap>
             Hospital Name

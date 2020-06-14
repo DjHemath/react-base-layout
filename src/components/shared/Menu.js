@@ -13,17 +13,17 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@material-ui/core';
 
 const MenuItems = ({menuItems, classes, menuItemClickHandler}) => {
   return menuItems.map(menuItem => (
-    <Link to={menuItem.url} className={classes.linkText} key={menuItem.url}>
-      <ListItem button onClick={menuItemClickHandler}>
+    <NavLink to={menuItem.url} activeClassName={classes.activeLink} className={classes.linkText} key={menuItem.url}>
+      <ListItem className="menuLink" button onClick={menuItemClickHandler}>
         <ListItemIcon className={classes.listIcon}>{menuItem.icon}</ListItemIcon>
         <ListItemText className={classes.primary} primary={menuItem.text} />
       </ListItem>
-    </Link>
+    </NavLink>
   ));
 }
 
@@ -36,7 +36,7 @@ const Menu = (props) => {
       return {
         drawer: {
           // width: drawerOpen ? isSmallScreen ? 0 : drawerWidth : isSmallScreen ? 0 : drawerWidth,
-          width: drawerOpen ? drawerWidth : 0,
+          width: drawerOpen ? drawerWidth : theme.spacing(6) + 1,
             flexShrink: 0,
             overflowX: 'hidden',
             whiteSpace: 'nowrap',
@@ -49,7 +49,7 @@ const Menu = (props) => {
             },
         },
         drawerPaper: {
-            width: drawerOpen ? drawerWidth :  isSmallScreen ?  0 : drawerWidth,
+            width: drawerOpen ? drawerWidth :  isSmallScreen ?  0 : theme.spacing(6) + 1,
             overflowX: 'hidden',
             whiteSpace: 'nowrap',
             transition: theme.transitions.create(['margin', 'width'], {
@@ -71,6 +71,12 @@ const Menu = (props) => {
         linkText: {
           textDecoration: 'none',
           color: '#333'
+        },
+        activeLink: {
+          // backgroundColor: 'red',
+          "& .menuLink" : {
+            backgroundColor: '#f4f4f4'
+          }
         },
         listIcon: {
           minWidth: '40px'

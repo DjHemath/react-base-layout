@@ -10,6 +10,8 @@ const Main = () => {
         content: {
             flexGrow: 1,
             padding: theme.spacing(3),
+            backgroundColor: '#f4f4f4',
+            height: '100vh'
           },
     }));
     const classes = useStyles()
