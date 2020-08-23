@@ -15,16 +15,80 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Label from '@material-ui/icons/Label';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import InfoIcon from '@material-ui/icons/Info';
+import ForumIcon from '@material-ui/icons/Forum';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import './Menu.css';
+import TreeView from '@material-ui/lab/TreeView';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+
 
 const MenuItems = ({menuItems, classes, menuItemClickHandler}) => {
-  return menuItems.map(menuItem => (
-    <Link to={menuItem.url} className={classes.linkText} key={menuItem.url}>
-      <ListItem button onClick={menuItemClickHandler}>
-        <ListItemIcon className={classes.listIcon}>{menuItem.icon}</ListItemIcon>
-        <ListItemText className={classes.primary} primary={menuItem.text} />
-      </ListItem>
-    </Link>
-  ));
+  // return menuItems.map(menuItem => (
+  //   <Link to={menuItem.url} className={classes.linkText} key={menuItem.url}>
+  //     <ListItem button onClick={menuItemClickHandler}>
+  //       <ListItemIcon className={classes.listIcon}>{menuItem.icon}</ListItemIcon>
+  //       <ListItemText className={classes.primary} primary={menuItem.name} />        
+  //     </ListItem>        
+  //   </Link>
+  // ));
+
+  return (
+    
+      <List disablePadding dense>
+        {menuItems.map(({ label, name, icon, url, items: subItems, ...rest }) => {
+          return (
+            <React.Fragment key={name}>
+              <Link to={url} className={classes.linkText} >
+                <ListItem style={{ paddingLeft: 18 }} button {...rest}>
+                <ListItemIcon className={classes.listIcon}>{icon}</ListItemIcon>
+                  <ListItemText>{label}</ListItemText>
+                </ListItem>
+              </Link>
+              <TreeView
+                className={classes.root}
+                defaultExpanded={['3']}
+                defaultCollapseIcon={<ArrowDropDownIcon />}
+                defaultExpandIcon={<ArrowRightIcon />}
+                defaultEndIcon={<div style={{ width: 24 }} />}
+              >
+              {Array.isArray(subItems) ? (
+                
+                <List disablePadding dense>
+                  {subItems.map((subItem) => {
+                    return (
+                      <Link to={`${url}${subItem.url}`} className={classes.linkText} key={subItem.url}>
+                        <ListItem
+                          key={subItem.name}
+                          style={{ paddingLeft: 36 }}
+                          button
+                          dense
+                        >
+                          <ListItemIcon className={classes.listIcon}>{subItem.icon}</ListItemIcon>
+                          <ListItemText>
+                            <span className="sidebar-subitem-text">                            
+                              {subItem.label}
+                            </span>
+                          </ListItemText>
+                        </ListItem>
+                      </Link>
+                    )
+                  })}
+                </List>
+               
+              ) : null}
+               </TreeView>
+            </React.Fragment>
+          )
+        })}
+      </List>
+
+
+  )
 }
 
 const Menu = (props) => {
@@ -45,6 +109,19 @@ const Menu = (props) => {
             }),
             [theme.breakpoints.down('xs')]: {
               width: 0,
+            },
+            root: {
+              color: theme.palette.text.secondary,
+              '&:hover > $content': {
+                backgroundColor: theme.palette.action.hover,
+              },
+              '&:focus > $content, &$selected > $content': {
+                backgroundColor: `var(--tree-view-bg-color, ${theme.palette.grey[400]})`,
+                color: 'var(--tree-view-color)',
+              },
+              '&:focus > $content $label, &:hover > $content $label, &$selected > $content $label': {
+                backgroundColor: 'transparent',
+              },
             },
         },
         drawerPaper: {
@@ -79,14 +156,40 @@ const Menu = (props) => {
 
     const menuItems = [
       {
-        text: "Configuration Process",
+        label: "Configuration Process",
+        name: "Configuration Process",
         url: "/configuration-process",
         icon: <InboxIcon />
       },
       {
-        text: "Manage User",
+        label: "Manage User",
+        name: "Manage User",
         url: "/manage-user",
         icon: <MailIcon />
+      },
+      {
+        label: "Categories",
+        name: "Categories",
+        url: "/categories",
+        icon: <Label />,
+        items: [
+          { name: 'Social', label: 'Social', url: '/social', icon: <SupervisorAccountIcon /> },
+          { name: 'Updates', label: 'Updates', url: '/update', icon: <InfoIcon /> },
+          { name: 'Forums', label: 'Forums', url: '/forums', icon: <ForumIcon /> },
+          { name: 'Promotions', label: 'Promotions', url: '/promotions', icon: <LocalOfferIcon /> },
+        ],
+      },
+      {
+        label: "All Mail",
+        name: "All Mail",
+        url: "/mail",
+        icon: <MailIcon />
+      },
+      {
+        label: "Trash",
+        name: "Trash",
+        url: "/trash",
+        icon: <DeleteIcon />
       }
     ];
 
@@ -99,34 +202,11 @@ const Menu = (props) => {
         }}
       >
         <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-              {/* <ListItem className={classes.menuCloseIcon}>
-                  {
-                      drawerOpen 
-                        ? 
-                            <IconButton onClick={closeHandler}><ChevronLeftIcon /></IconButton>
-                        :
-                            <IconButton onClick={openHandler}><ChevronRightIcon /></IconButton>
-                  }
-              </ListItem> */}
-              {/* <Link to="/configuration-process" className={classes.linkText} >
-                <ListItem button onClick={menuItemClickHandler}>
-                  <ListItemIcon className={classes.listIcon}><InboxIcon /></ListItemIcon>
-                  <ListItemText primary={"Configuration Process"} />
-                </ListItem>
-              </Link>
-              <Link to="/manage-user" className={classes.linkText} >
-                <ListItem button onClick={menuItemClickHandler}>
-                  <ListItemIcon className={classes.listIcon}><InboxIcon /></ListItemIcon>
-                  <ListItemText className={classes.primary} primary={"Manage User"} />
-                </ListItem>
-              </Link> */}
-
-              <MenuItems menuItems={menuItems} classes={classes} menuItemClickHandler={menuItemClickHandler}/>
-              
-          </List>
-        </div>
+          <div className={classes.drawerContainer}>
+            <List>              
+                <MenuItems menuItems={menuItems} classes={classes} menuItemClickHandler={menuItemClickHandler}/>              
+            </List>
+          </div>
       </Drawer>
     );
 };
