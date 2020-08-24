@@ -1,18 +1,19 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import NavBar from './components/shared/NavBar';
-import Menu from './components/shared/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Main from './components/Main';
-import { useMediaQuery } from '@material-ui/core';
+import React from "react";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import NavBar from "./components/shared/NavBar";
+import Menu from "./components/shared/Menu";
+import Toolbar from "@material-ui/core/Toolbar";
+import Main from "./components/Main";
+import { useMediaQuery } from "@material-ui/core";
+import MenuSection from "./components/shared/MenuSection";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   drawerContainer: {
-    overflow: 'auto',
+    overflow: "auto",
   },
   content: {
     flexGrow: 1,
@@ -37,23 +38,29 @@ function App() {
   const classes = useStyles();
 
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [drawerOpen, setDrawerState] = React.useState(false);
 
   const menuItemClicked = () => {
-    setDrawerState(!isSmallScreen)
-  }
+    setDrawerState(!isSmallScreen);
+  };
 
   const toggleDrawer = () => {
-    setDrawerState(!drawerOpen)
-  }
+    setDrawerState(!drawerOpen);
+  };
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <NavBar drawerHanlder={toggleDrawer}/>
-      <Menu drawerWidth={drawerWidth} drawerOpen={drawerOpen} menuItemClickHandler={menuItemClicked}/>
+      <NavBar drawerHanlder={toggleDrawer} />
+      <MenuSection />
+
+      {/* <Menu
+        drawerWidth={drawerWidth}
+        drawerOpen={drawerOpen}
+        menuItemClickHandler={menuItemClicked}
+      /> */}
       <Main />
     </div>
   );
